@@ -1,0 +1,424 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     16139,        416]
+NotebookOptionsPosition[     15250,        387]
+NotebookOutlinePosition[     15607,        403]
+CellTagsIndexPosition[     15564,        400]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["How to Use Zhihu Picture Web-crawler", "Section",
+ CellChangeTimes->{{3.765342256943812*^9, 3.765342278402241*^9}, {
+  3.765342355871597*^9, 
+  3.7653423689908433`*^9}},ExpressionUUID->"13487a84-6f93-4d5c-a688-\
+94e33a8a0009"],
+
+Cell["\<\
+1. Give the question ID in Zhihu (such as \
+https://www.zhihu.com/question/27741971   here, question ID is 27741971);
+2. Give the number of pages you want to get in this question, then this \
+programming will get answers in these pages and download pictures in answers;
+3. Give the save address that you want to save pictures (for Windows system, \
+such as \[OpenCurlyDoubleQuote]C://Users//Pictures//wallpaper\
+\[CloseCurlyDoubleQuote]);
+4. Fill the first commend line using the information above, then run it;
+5. Run the second part programming.
+
+Important things you should notice!!!
+1. This programming is created for studying relative string knowledge in \
+Mathematica, you must not use this programming for illegal things!!!
+2. To avoid your IP was prohibited by Zhihu, the speed of programming has \
+slowed down (one action per second).
+3. Because the shortcoming of programming, this programming can only get 75 \
+percents of all answers.\
+\>", "Text",
+ CellChangeTimes->{{3.765343330591198*^9, 3.7653433683884044`*^9}, {
+  3.765343434794861*^9, 3.7653439590597553`*^9}, {3.765343991028984*^9, 
+  3.765344082670197*^9}, {3.7653441387487817`*^9, 3.7653441586540003`*^9}, {
+  3.765344659122182*^9, 3.7653447014660425`*^9}, {3.765344734811256*^9, 
+  3.7653447354050503`*^9}, {3.7653448032821875`*^9, 3.765344890591668*^9}, {
+  3.765344926669438*^9, 3.7653450327157946`*^9}, {3.76534741382729*^9, 
+  3.765347429307621*^9}, {3.7653477361979904`*^9, 3.7653477364835014`*^9}, {
+  3.7653726311186686`*^9, 3.765372690584708*^9}, {3.7653727258548985`*^9, 
+  3.765372804974429*^9}},ExpressionUUID->"f97a2395-f3a7-4e86-952a-\
+c3601ffd42d4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Programming", "Section",
+ CellChangeTimes->{{3.7653539980069723`*^9, 
+  3.7653540017383294`*^9}},ExpressionUUID->"73088546-53bb-4a4f-ab1d-\
+b6ff5fdfe1a7"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"questionid", "=", "\"\<27741971\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"maxpage", "=", "3"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"saveaddress", "=", "\"\<C://Users//Pictures//wallpaper\>\""}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{
+  3.76526861481182*^9, {3.765268732221527*^9, 3.7652687324354153`*^9}, {
+   3.7652734145140886`*^9, 3.7652734390999813`*^9}, 3.7652737311966114`*^9, {
+   3.7652737952918825`*^9, 3.7652737957476363`*^9}, 3.765274623377396*^9, {
+   3.7652746544485836`*^9, 3.7652746546164875`*^9}, {3.765274687667567*^9, 
+   3.7652747136017113`*^9}, 3.765284377240868*^9, {3.7652844620262656`*^9, 
+   3.7652844623300924`*^9}, 3.765335695106738*^9, 3.76533575117522*^9, {
+   3.7653370310030303`*^9, 3.765337051527298*^9}, 3.7653381315029984`*^9, {
+   3.765338200129808*^9, 3.765338206046688*^9}, {3.765339163145499*^9, 
+   3.7653391818488445`*^9}, {3.7653426851192913`*^9, 3.765342706414484*^9}, {
+   3.7653428003110175`*^9, 3.7653428038901896`*^9}, {3.7653441953560953`*^9, 
+   3.765344208498852*^9}, {3.7653447739963093`*^9, 3.765344785949751*^9}, {
+   3.765358990381068*^9, 3.7653590081056004`*^9}, 3.7653698788797436`*^9, {
+   3.7653708569826097`*^9, 3.765370875027589*^9}, {3.765370950563595*^9, 
+   3.7653709625555816`*^9}, {3.765373082375448*^9, 3.7653731057525406`*^9}, {
+   3.7653731798299894`*^9, 
+   3.7653731979550295`*^9}},ExpressionUUID->"ccf851bb-cc6e-4ea2-8515-\
+0626e2182bcd"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"pagenumstring", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"ToString", "[", "i", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", "maxpage", ",", "0.5"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"pagehot", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{"0", ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", 
+       RowBox[{"Length", "[", "pagenumstring", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"pageupdated", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{"0", ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", 
+       RowBox[{"Length", "[", "pagenumstring", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"For", "[", 
+   RowBox[{
+    RowBox[{"hotno", "=", "1"}], ",", 
+    RowBox[{"hotno", "<", 
+     RowBox[{
+      RowBox[{"Length", "[", "pagenumstring", "]"}], "+", "1"}]}], ",", 
+    RowBox[{"hotno", "++"}], ",", 
+    RowBox[{
+     RowBox[{"Pause", "[", "1", "]"}], ";", 
+     RowBox[{
+      RowBox[{"pagehot", "[", 
+       RowBox[{"[", "hotno", "]"}], "]"}], "=", 
+      RowBox[{"Import", "[", 
+       RowBox[{
+        RowBox[{
+        "\"\<https://www.zhihu.com/question/\>\"", "<>", "questionid", "<>", 
+         "\"\<?page=\>\"", "<>", 
+         RowBox[{"pagenumstring", "[", 
+          RowBox[{"[", "hotno", "]"}], "]"}]}], ",", "\"\<Text\>\""}], 
+       "]"}]}]}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"For", "[", 
+   RowBox[{
+    RowBox[{"upno", "=", "1"}], ",", 
+    RowBox[{"upno", "<", 
+     RowBox[{
+      RowBox[{"Length", "[", "pagenumstring", "]"}], "+", "1"}]}], ",", 
+    RowBox[{"upno", "++"}], ",", 
+    RowBox[{
+     RowBox[{"Pause", "[", "1", "]"}], ";", 
+     RowBox[{
+      RowBox[{"pageupdated", "[", 
+       RowBox[{"[", "upno", "]"}], "]"}], "=", 
+      RowBox[{"Import", "[", 
+       RowBox[{
+        RowBox[{
+        "\"\<https://www.zhihu.com/question/\>\"", "<>", "questionid", "<>", 
+         "\"\</answers/updated?page=\>\"", "<>", 
+         RowBox[{"pagenumstring", "[", 
+          RowBox[{"[", "upno", "]"}], "]"}]}], ",", "\"\<Text\>\""}], 
+       "]"}]}]}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"answeridstringhot", "=", 
+   RowBox[{
+    RowBox[{"Flatten", "[", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"StringSplit", "[", 
+        RowBox[{
+         RowBox[{"StringDrop", "[", 
+          RowBox[{
+           RowBox[{"StringDrop", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"StringSplit", "[", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"StringSplit", "[", 
+                  RowBox[{
+                   RowBox[{"pagehot", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], ",", "\"\<newIds\>\""}], 
+                  "]"}], "[", 
+                 RowBox[{"[", 
+                  RowBox[{"-", "2"}], "]"}], "]"}], ",", "\"\<ids\>\""}], 
+               "]"}], "[", 
+              RowBox[{"[", 
+               RowBox[{"-", "1"}], "]"}], "]"}], ",", "3"}], "]"}], ",", 
+           RowBox[{"-", "3"}]}], "]"}], ",", "\"\<,\>\""}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "1", ",", 
+         RowBox[{"Length", "[", "pagenumstring", "]"}]}], "}"}]}], "]"}], 
+     "]"}], "//", "Union"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"answeridstringupdated", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Flatten", "[", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"StringSplit", "[", 
+         RowBox[{
+          RowBox[{"StringDelete", "[", 
+           RowBox[{
+            RowBox[{"StringDelete", "[", 
+             RowBox[{
+              RowBox[{"StringDrop", "[", 
+               RowBox[{
+                RowBox[{"StringDrop", "[", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"StringSplit", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"StringSplit", "[", 
+                    RowBox[{
+                    RowBox[{"pageupdated", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], ",", "\"\<totals\>\""}], 
+                    "]"}], "[", 
+                    RowBox[{"[", 
+                    RowBox[{"-", "2"}], "]"}], "]"}], ",", "\"\<ids\>\""}], 
+                    "]"}], "[", 
+                   RowBox[{"[", 
+                    RowBox[{"-", "1"}], "]"}], "]"}], ",", "3"}], "]"}], ",", 
+                RowBox[{"-", "3"}]}], "]"}], ",", "\"\<,null\>\""}], "]"}], 
+            ",", "\"\<null,\>\""}], "]"}], ",", "\"\<,\>\""}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "1", ",", 
+          RowBox[{"Length", "[", "pagenumstring", "]"}]}], "}"}]}], "]"}], 
+      "]"}], "//", "Union"}], "//", 
+    RowBox[{
+     RowBox[{"Drop", "[", 
+      RowBox[{"#", ",", 
+       RowBox[{"-", "1"}]}], "]"}], "&"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"answeridstring", "=", 
+   RowBox[{"Union", "[", 
+    RowBox[{"answeridstringhot", ",", "answeridstringupdated"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"StringForm", "[", 
+  RowBox[{"\"\<The number of answer you get is ``\>\"", ",", 
+   RowBox[{"Length", "[", "answeridstring", "]"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"answerlist", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{"0", ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", 
+       RowBox[{"Length", "[", "answeridstring", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"For", "[", 
+   RowBox[{
+    RowBox[{"ansno", "=", "1"}], ",", 
+    RowBox[{"ansno", "<", 
+     RowBox[{
+      RowBox[{"Length", "[", "answeridstring", "]"}], "+", "1"}]}], ",", 
+    RowBox[{"ansno", "++"}], ",", 
+    RowBox[{
+     RowBox[{"Pause", "[", "1", "]"}], ";", 
+     RowBox[{
+      RowBox[{"answerlist", "[", 
+       RowBox[{"[", "ansno", "]"}], "]"}], "=", 
+      RowBox[{"Import", "[", 
+       RowBox[{
+        RowBox[{
+        "\"\<https://www.zhihu.com/question/\>\"", "<>", "questionid", "<>", 
+         "\"\</answer/\>\"", "<>", 
+         RowBox[{"answeridstring", "[", 
+          RowBox[{"[", "ansno", "]"}], "]"}], "<>", "\"\</\>\""}], ",", 
+        "\"\<XMLObject\>\""}], "]"}]}]}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"address", "=", 
+   RowBox[{"Cases", "[", 
+    RowBox[{"answerlist", ",", 
+     RowBox[{
+      RowBox[{"XMLElement", "[", 
+       RowBox[{"\"\<noscript\>\"", ",", 
+        RowBox[{"{", "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"XMLElement", "[", 
+          RowBox[{"\"\<span\>\"", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+             "\"\<class\>\"", "\[Rule]", 
+              "\"\<RichText ztext CopyrightRichText-richText\>\""}], ",", 
+             RowBox[{"\"\<itemprop\>\"", "\[Rule]", "\"\<text\>\""}]}], "}"}],
+            ",", 
+           RowBox[{"{", 
+            RowBox[{"XMLElement", "[", 
+             RowBox[{"\"\<img\>\"", ",", 
+              RowBox[{"{", 
+               RowBox[{"___", ",", 
+                RowBox[{"\"\<src\>\"", "\[Rule]", "src_"}], ",", "___"}], 
+               "}"}], ",", 
+              RowBox[{"{", "}"}]}], "]"}], "}"}]}], "]"}], "}"}]}], "]"}], 
+      "\[RuleDelayed]", "src"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "Infinity"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"rawaddress", "=", 
+   RowBox[{"StringReplace", "[", 
+    RowBox[{"address", ",", 
+     RowBox[{"\"\<_hd\>\"", "\[Rule]", "\"\<_r\>\""}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"postfix", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"StringTake", "[", 
+      RowBox[{"#", ",", 
+       RowBox[{"-", "3"}]}], "]"}], "&"}], "/@", "rawaddress"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"StringForm", "[", 
+  RowBox[{"\"\<The number of picture you get is ``\>\"", ",", 
+   RowBox[{"Length", "[", "rawaddress", "]"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"name", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"StringForm", "[", 
+      RowBox[{
+       RowBox[{"saveaddress", "<>", "\"\<//``.``\>\""}], ",", "i", ",", 
+       RowBox[{"postfix", "[", 
+        RowBox[{"[", "i", "]"}], "]"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", 
+       RowBox[{"Length", "[", "rawaddress", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"For", "[", 
+   RowBox[{
+    RowBox[{"picno", "=", "1"}], ",", 
+    RowBox[{"picno", "<", 
+     RowBox[{
+      RowBox[{"Length", "[", "rawaddress", "]"}], "+", "1"}]}], ",", 
+    RowBox[{"picno", "++"}], ",", 
+    RowBox[{
+     RowBox[{"Pause", "[", "1", "]"}], ";", 
+     RowBox[{"Export", "[", 
+      RowBox[{
+       RowBox[{"ToString", "[", 
+        RowBox[{"name", "[", 
+         RowBox[{"[", "picno", "]"}], "]"}], "]"}], ",", 
+       RowBox[{"Import", "[", 
+        RowBox[{"rawaddress", "[", 
+         RowBox[{"[", "picno", "]"}], "]"}], "]"}]}], "]"}]}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.765268137006606*^9, 3.765268138942499*^9}, {
+   3.7652682078329983`*^9, 3.7652682373161087`*^9}, {3.7652682785654764`*^9, 
+   3.7652682791151547`*^9}, {3.7652684560597687`*^9, 
+   3.7652684765969973`*^9}, {3.7652714646828203`*^9, 3.765271505086665*^9}, {
+   3.7652715571848125`*^9, 3.765271578627529*^9}, {3.7652716896728992`*^9, 
+   3.765271708081349*^9}, 3.7652717659881887`*^9, 3.765273504507518*^9, {
+   3.765273618869973*^9, 3.765273704557892*^9}, 3.765273837396773*^9, {
+   3.7652746738784513`*^9, 3.7652746778362017`*^9}, {3.765284266243469*^9, 
+   3.7652842865078397`*^9}, {3.765284424309896*^9, 3.7652844270113297`*^9}, {
+   3.7653357959345016`*^9, 3.7653358032806478`*^9}, {3.765336018570291*^9, 
+   3.7653360995608683`*^9}, {3.7653368120001173`*^9, 3.765336823498215*^9}, {
+   3.765337089874211*^9, 3.765337095263906*^9}, {3.765338137325879*^9, 
+   3.765338142435175*^9}, {3.76533924887663*^9, 3.765339255557598*^9}, {
+   3.7653426656707387`*^9, 3.76534267239588*^9}, {3.765362035392947*^9, 
+   3.765362075026618*^9}, {3.7653636579886937`*^9, 3.7653636645520835`*^9}, {
+   3.765363825309956*^9, 3.765363831956004*^9}, {3.7653642545207806`*^9, 
+   3.765364377974165*^9}, {3.765364419052271*^9, 3.76536446803468*^9}, {
+   3.765369642211989*^9, 3.765369874245385*^9}, {3.765369916918025*^9, 
+   3.7653699857226925`*^9}, {3.765370059811364*^9, 3.7653701034553924`*^9}, {
+   3.765370136792369*^9, 3.765370156326185*^9}, {3.765370186695818*^9, 
+   3.7653702072170906`*^9}, {3.7653711577243133`*^9, 
+   3.7653711591616096`*^9}, {3.7653729342710233`*^9, 
+   3.7653729397268767`*^9}},ExpressionUUID->"84fedc2d-4dcd-4aa4-bfd9-\
+6e19433e12af"],
+
+Cell[BoxData[
+ RowBox[{"Dynamic", "[", 
+  RowBox[{"{", 
+   RowBox[{"picno", ",", "ansno", ",", "upno", ",", "hotno"}], "}"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.7653709212579765`*^9, 3.765370925519188*^9}, {
+  3.765370989658992*^9, 
+  3.765371027783266*^9}},ExpressionUUID->"4037e4f8-c86c-404e-bb15-\
+8ef4ba912c96"]
+}, Open  ]]
+},
+WindowSize->{1304, 725},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (2017\:5e745\:670816\
+\:65e5)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 232, 4, 63, "Section", "ExpressionUUID" -> \
+"13487a84-6f93-4d5c-a688-94e33a8a0009"],
+Cell[815, 28, 1646, 28, 201, "Text", "ExpressionUUID" -> \
+"f97a2395-f3a7-4e86-952a-c3601ffd42d4"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2498, 61, 160, 3, 63, "Section", "ExpressionUUID" -> \
+"73088546-53bb-4a4f-ab1d-b6ff5fdfe1a7"],
+Cell[2661, 66, 1482, 26, 69, "Input", "ExpressionUUID" -> \
+"ccf851bb-cc6e-4ea2-8515-0626e2182bcd"],
+Cell[4146, 94, 10763, 280, 976, "Input", "ExpressionUUID" -> \
+"84fedc2d-4dcd-4aa4-bfd9-6e19433e12af"],
+Cell[14912, 376, 322, 8, 47, "Input", "ExpressionUUID" -> \
+"4037e4f8-c86c-404e-bb15-8ef4ba912c96"]
+}, Open  ]]
+}
+]
+*)
+
