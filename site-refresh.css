@@ -1,0 +1,248 @@
+@import url("https://fonts.googleapis.com/css2?family=LXGW+WenKai&text=%E4%B8%81%E4%B9%BE%E8%88%AA&display=swap");
+
+:root {
+  --page: #f2f0eb;
+  --paper: #fffefa;
+  --ink: #232323;
+  --muted: #73706a;
+  --line: #d8d4cc;
+  --accent: #315d78;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background: var(--page);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--page);
+  font-family: "Times New Roman", Times, serif;
+  text-rendering: optimizeLegibility;
+}
+
+#a {
+  width: min(980px, calc(100% - 40px));
+  height: auto;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 52px 64px 88px;
+  background: var(--paper);
+  box-shadow: 0 0 36px rgba(40, 38, 34, 0.08);
+}
+
+.site-header { padding-bottom: 22px; }
+.site-header .chinesetitle { display: block; letter-spacing: -0.02em; }
+.site-header .chinese1 {
+  font-family: STKaiti, "Kaiti SC", "STKaiti-SC-Regular", "LXGW WenKai", KaiTi, "楷体", "KaiTi_GB2312", "DFKai-SB", cursive;
+  font-style: normal;
+  font-weight: 400;
+  font-synthesis: none;
+}
+.site-header .secondarytitle {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 25px;
+}
+
+#b {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(14px, 2vw, 28px);
+  width: 100%;
+  height: auto;
+  padding: 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  line-height: normal;
+}
+
+#b .a1, #b .a1:link, #b .a1:visited {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.055em;
+}
+
+#b .a1:last-child { margin-left: 0; }
+#b .a1:hover, #b .a1:focus-visible, #b .a1[aria-current="page"] { color: var(--ink); }
+
+#b .a1[aria-current="page"]::after {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  background: var(--accent);
+  content: "";
+}
+
+#b + hr { display: none; }
+a:focus-visible { border-radius: 2px; outline: 2px solid var(--accent); outline-offset: 3px; }
+
+#c, #cmb, #pikapika, #zhihu, #montage, #tank, #pic {
+  width: 100%;
+  height: auto;
+}
+
+#a #c p, #a p.content, #a .lineawards { line-height: 1.65; }
+
+#a h2 {
+  margin: 46px 0 18px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--line);
+  font-size: 25px;
+  font-weight: normal;
+}
+
+#a h3 { margin: 28px 0 8px; color: var(--muted); font-size: 18px; }
+#a hr { height: 1px; border: 0; background: var(--line); }
+
+.information1, .email, .link1,
+.information1:visited, .email:visited, .link1:visited {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.information1:hover, .email:hover, .link1:hover { text-decoration: underline; }
+#a img { max-width: 100%; height: auto; }
+
+/* Override the legacy two-ID float rule so section text always starts below media. */
+#a #c img { float: none; }
+
+.home-page #c { padding-top: 30px; }
+.home-page #c > p:first-child { margin-top: 0; }
+.home-page #c > h2 + hr { display: none; }
+.home-page #a #c > p:first-child img {
+  float: left;
+  width: min(300px, 38%);
+  margin: 0 30px 20px 0;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+.home-page #c::after { display: block; clear: both; content: ""; }
+
+.research-page #c, .talk-page #c { padding-top: 10px; }
+.research-page #c > p:not(.content) { margin: 30px 0 0; }
+.research-page #c > p:not(.content) img {
+  float: none;
+  display: block;
+  width: min(640px, 100%);
+  margin: 0;
+  border: 1px solid var(--line);
+}
+.research-page #c > p:not(.content) + p.content {
+  margin-top: 0;
+  padding: 18px 0 30px;
+  border-bottom: 1px solid var(--line);
+}
+.research-page p.content b:first-child { font-size: 17px; }
+
+/* Keep wrapped publication titles aligned after their bracketed number. */
+.research-page #c > h2:nth-of-type(2) ~ p.content {
+  padding-left: 2em;
+  text-indent: -2em;
+}
+
+.talk-page #c > p.content {
+  position: relative;
+  min-height: 88px;
+  margin: 0 0 12px;
+  padding: 17px 130px 17px 20px;
+  border-left: 3px solid #aabcc6;
+  background: #faf9f5;
+}
+.talk-page .talkstitle { color: #353535; }
+.talk-page .talksdate {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  float: none;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.programming-page #c, .programming-page #cmb, .programming-page #pikapika,
+.programming-page #zhihu, .programming-page #montage, .programming-page #tank {
+  clear: both;
+  display: flow-root;
+  margin-top: 24px;
+  padding: 24px 26px;
+  border: 1px solid var(--line);
+  background: #faf9f5;
+}
+.programming-page #c { margin-top: 34px; }
+.programming-page #c h2 { margin-top: 0; }
+.programming-page img {
+  display: inline-block;
+  margin: 8px 12px 8px 0;
+  vertical-align: top;
+}
+
+.universe-page #c { margin-top: 30px; }
+.universe-page #c img {
+  float: none;
+  display: block;
+  width: min(700px, 100%);
+  margin: 0 auto;
+  border: 1px solid var(--line);
+}
+.universe-page #c + #c {
+  margin-top: 20px;
+  padding: 22px 26px;
+  border-left: 3px solid #aabcc6;
+  background: #faf9f5;
+}
+.universe-page #c + #c p:last-child { margin-bottom: 0; }
+
+@media screen and (max-width: 780px) {
+  #a { width: 100%; padding: 28px 20px 56px; box-shadow: none; }
+  .site-header { padding-bottom: 16px; }
+  .site-header .chinesetitle, .site-header .chinese1 { font-size: clamp(29px, 9vw, 36px); }
+  .site-header .secondarytitle { font-size: clamp(21px, 6.5vw, 25px); }
+
+  #b {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 18px;
+    padding: 7px 0;
+  }
+  #b .a1, #b .a1:link, #b .a1:visited {
+    min-height: 42px;
+    overflow: visible;
+    font-size: 14px;
+    line-height: 1.15;
+    white-space: normal;
+  }
+  #b .a1:last-child { margin-left: 0; }
+  #b .a1[aria-current="page"]::after { right: auto; width: 34px; }
+  #a h2 { margin-top: 38px; }
+
+  .home-page #c { padding-top: 24px; }
+  .home-page #a #c > p:first-child img {
+    float: none;
+    width: min(300px, 78vw);
+    margin: 0 auto 22px;
+  }
+  .research-page #c > p:not(.content) + p.content { padding-top: 14px; }
+  .talk-page #c > p.content { min-height: 0; padding: 16px 18px; }
+  .talk-page .talksdate { position: static; display: block; margin-top: 7px; }
+  .programming-page #c, .programming-page #cmb, .programming-page #pikapika,
+  .programming-page #zhihu, .programming-page #montage, .programming-page #tank { padding: 20px; }
+  .programming-page img { display: block; margin: 12px auto; }
+}
+
+@media screen and (max-width: 420px) {
+  #b { grid-template-columns: 1fr; }
+  #b .a1, #b .a1:link, #b .a1:visited { min-height: 38px; }
+}

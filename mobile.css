@@ -1,0 +1,114 @@
+/* Mobile-only layout adjustments. Desktop styles and typography remain intact. */
+@media screen and (max-width: 768px) {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    min-width: 0;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  #a {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px 16px 40px;
+  }
+
+  #a > p:first-child {
+    margin: 0 0 14px;
+    line-height: 1.2;
+  }
+
+  .chinesetitle,
+  .chinese1 {
+    font-size: clamp(28px, 9vw, 36px);
+  }
+
+  .secondarytitle {
+    display: block;
+    margin-top: 6px;
+    font-size: clamp(23px, 7.5vw, 32px);
+  }
+
+  #b {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 12px;
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    line-height: normal;
+  }
+
+  #b .a1 {
+    flex: 1 1 calc(50% - 6px);
+    box-sizing: border-box;
+    height: 44px;
+    overflow: hidden;
+    line-height: 44px;
+    white-space: nowrap;
+  }
+
+  #a > div:not(#b),
+  #c,
+  #cmb,
+  #pikapika,
+  #zhihu,
+  #montage,
+  #tank,
+  #pic {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+  }
+
+  #a img {
+    float: none !important;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto 16px;
+  }
+
+  #a img[src$="holder.png"] {
+    display: none;
+  }
+
+  #a p,
+  #a h2,
+  #a h3,
+  #a a,
+  #a span {
+    overflow-wrap: anywhere;
+  }
+
+  .talksdate {
+    float: none !important;
+    display: block;
+    margin-top: 4px;
+  }
+
+  #d {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    padding: 20px 16px;
+  }
+
+  #d #d1 {
+    float: none;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  #b .a1 {
+    flex-basis: 100%;
+  }
+}

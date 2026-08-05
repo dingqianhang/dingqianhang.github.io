@@ -1,9 +1,11 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="icon" href="images/favicon.ico">
 <title>Programming | Qianhang Ding 丁乾航</title>
+<meta name="description" content="Programming projects by Qianhang Ding, including Mathematica simulations, image tools, and interactive experiments." />
 <style type="text/css">
 #a {
 	height: 2750px;
@@ -134,6 +136,8 @@
 	text-decoration: none;
 }
 </style>
+<link rel="stylesheet" href="mobile.css" />
+<link rel="stylesheet" href="site-refresh.css" />
 <script type="text/javascript">
 function MM_popupMsg(msg) { //v1.0
   alert(msg);
@@ -141,37 +145,38 @@ function MM_popupMsg(msg) { //v1.0
 </script>
 </head>
 
-<body>
+<body class="programming-page">
 <div id="a">
-   <p>
-  <strong class="chinesetitle">Qianhang Ding <span class="chinese1">丁乾航</span></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="secondarytitle">To Understand &nbsp;To Find</span><br/> 
-  </p><br/> 
+  <div class="site-header">
+    <strong class="chinesetitle">Qianhang Ding <span class="chinese1">丁乾航</span></strong>
+    <span class="secondarytitle">To Understand &nbsp;To Find</span>
+  </div>
 
-  <div id="b">
-  <a href="index.html" class="a1">QIANHANG DING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-  <a href="reserach.html" class="a1">RESEARCH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-  <a href="talk.html" class="a1">TALK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-  <a href="programming.html" class="a1">PROGRAMMING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-<a href="human_universe.html" class="a1">HUMAN&UNIVERSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-<a href="pdf/CV_Qianhang_Ding.pdf" target="_blank" class="a1">CV</a>
+  <div id="b" role="navigation" aria-label="Primary navigation">
+    <a href="index.html" class="a1">QIANHANG DING</a>
+    <a href="reserach.html" class="a1">RESEARCH</a>
+    <a href="talk.html" class="a1">TALK</a>
+    <a href="programming.html" class="a1" aria-current="page">PROGRAMMING</a>
+    <a href="human_universe.html" class="a1">HUMAN &amp; UNIVERSE</a>
+    <a href="pdf/CV_Qianhang_Ding.pdf" target="_blank" class="a1">CV</a>
   </div><hr />
 
 <div id="c">
   <h2 class="content">Interesting Programming</h2>
   <p class="content"><B>Three Body Simulation</B> [<a href="program/threebodysimulation.nb" target="_blank" class="link1">Mathematica notebook</a>]<hr/>
-<img src="images/threebody.gif" width="300" height="300" />
+<img src="images/threebody.gif" width="300" height="300" alt="Three-body simulation animation" decoding="async" />
 </p>
 </div>
 
 <div id="cmb">
 <p class="content"><B>CMB & LSS Simulation</B> [<a href="program/cmb_simulation.nb" target="_blank" class="link1">Mathematica notebook</a>]<hr/></p>
 <p class="content">Cosmic microwave background (CMB) was produced during recombination era. At that time, baryon acoustic oscillations (BAO) just ended, the gravitational potential of dark matter and baryon shaped the CMB. Then high density regions in CMB give seed of large scale structure (LSS) to form fibre structure of universe. So this toy model simulation is based on BAO gravitational potential distribution to get the CMB, then take the high density regions in CMB as the seed of LSS.</p>
-<p><img src="images/cmb.jpg" width="328" height="300" /><img src="images/lss.jpg" width="300" height="300" /></p>
+<p><img src="images/cmb.jpg" width="328" height="300" alt="Simulated cosmic microwave background" loading="lazy" decoding="async" /><img src="images/lss.jpg" width="300" height="300" alt="Simulated large-scale structure" loading="lazy" decoding="async" /></p>
  </div> 
 
 <div id="pikapika">
 <p class="content"><B>Pikachu Mask</B> [<a href="program/playcamera.nb" target="_blank" class="link1">Mathematica notebook</a>]<hr/>
-<img src="images/pikapika.gif" width="300" height="200" /></p>
+<img src="images/pikapika.gif" width="300" height="200" alt="Pikachu camera-mask demonstration" loading="lazy" decoding="async" /></p>
  </div> 
 
 <div id="zhihu">
@@ -192,13 +197,13 @@ function MM_popupMsg(msg) { //v1.0
 <div id="montage">
 <p class="content"><B>Montage Picture Maker</B> [<a href="program/Montage_Picture1.3.nb" target="_blank" class="link1">Mathematica notebook</a>]<hr/></p>
 <p class="content">Montage picture is combination of small pictures. Use different pictures to replace pixels in original picture, finally export the montage picture. You can save following original picture and montage picture, then zoom in the montage picture to find another world.</p>
-<p><img src="images/ias.jpg" width="300" height="200" /><img src="images/iasmontage.jpg" width="300" height="200" /></p>
+<p><img src="images/ias.jpg" width="300" height="200" alt="Original Institute for Advanced Study photograph" loading="lazy" decoding="async" /><img src="images/iasmontage.jpg" width="300" height="200" alt="Photographic montage of the Institute for Advanced Study" loading="lazy" decoding="async" /></p>
 </div>
 
 <div id="tank">
 <p class="content"><B>Tank Game</B> [<a href="program/tankgame.nb" target="_blank" class="link1">Mathematica notebook</a>]<hr/></p>
 <p class="content">Tank game is based on Mathematica kernel. You can use "up", "down", "left", "right" keys to control your tank and press "space" key to shoot. Best wishes!</p>
-<p><img src="images/tankgame.gif" width="300" height="300" /></p>
+<p><img src="images/tankgame.gif" width="300" height="300" alt="Mathematica tank-game animation" loading="lazy" decoding="async" /></p>
  </div> 
 </div>
 
